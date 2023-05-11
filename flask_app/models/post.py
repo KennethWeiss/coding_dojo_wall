@@ -8,6 +8,7 @@ class Post:
         self.content = data['content']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.user_id = data['user_id']
         self.creator = None
 
     @classmethod
