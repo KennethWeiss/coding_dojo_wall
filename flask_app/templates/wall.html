@@ -41,7 +41,7 @@
         <li>User id: {{each_post.user_id}}</li>
         <li>Session: {{session['id']}}</li>
         {% if each_post.user_id == session['id'] %}
-        Delete
+        <button>Delete</button>
         {% endif %}
         {% endfor %}
     </ul>
