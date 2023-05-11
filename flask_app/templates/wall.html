@@ -38,7 +38,7 @@
         {% for each_post in all_posts %}
 
         <li>{{each_post.content}}</li>
-        <li>User id: {{each_post.user_id}}</li>
+        <li>User id: {{each_post.user_id}} - {{each_post.created_at.strftime('%B %d')}}</li>
         <li>Session: {{session['id']}}</li>
         {% if each_post.user_id == session['id'] %}
         <button>Delete</button>
