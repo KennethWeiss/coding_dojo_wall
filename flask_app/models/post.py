@@ -16,3 +16,13 @@ class Post:
                 VALUES (%(content)s, %(user_id)s);"""
         results = connectToMySQL(cls.db).query_db(query,data)
         return results
+    
+    @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM posts;"
+        results = connectToMySQL(cls.db).query_db(query)
+        all_posts = []
+        for post in results:
+            all_posts.append(cls(post))
+        print(results)
+        return results

@@ -6,7 +6,10 @@ from flask_app.models import post
 
 @app.route("/post")
 def display_post():
-    return "Posted"
+    all_posts = post.Post.get_all()
+    print("Here are the posts")
+    print(all_posts)
+    return redirect("/success")
 
 @app.route("/post", methods=["POST"])
 def user_post():
@@ -15,4 +18,4 @@ def user_post():
         "user_id" : session["id"]
     }
     post.Post.create(data)
-    return "Posted"
+    return redirect("/post")
