@@ -34,6 +34,10 @@
     <div class="community_posts">
         <h3>All Community Posts</h3>
     </div>
-
+    <ul>
+        {% for each_post in all_posts %}
+        <li>{{each_post.content}}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

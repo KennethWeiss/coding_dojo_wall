@@ -45,7 +45,7 @@ def login():
     session["last_name"] = user_from_db.last_name
     session['email']=request.form['email']
     session['logged_in'] = True
-    return render_template("wall.html")
+    return redirect("/post")
     
 @app.route("/success")
 def success_display():

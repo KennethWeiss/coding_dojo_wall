@@ -24,5 +24,4 @@ class Post:
         all_posts = []
         for post in results:
             all_posts.append(cls(post))
-        print(results)
-        return results
+        return all_posts

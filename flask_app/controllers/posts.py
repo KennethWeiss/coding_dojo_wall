@@ -6,10 +6,12 @@ from flask_app.models import post
 
 @app.route("/post")
 def display_post():
-    all_posts = post.Post.get_all()
-    print("Here are the posts")
-    print(all_posts)
-    return redirect("/success")
+    if session.get('logged_in') == True:
+        all_posts = post.Post.get_all()
+        print("Here are the posts")
+        print(all_posts)
+        return render_template("wall.html", all_posts = all_posts)
+    return "You are not logged in"
 
 @app.route("/post", methods=["POST"])
 def user_post():
