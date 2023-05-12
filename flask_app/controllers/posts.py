@@ -13,11 +13,14 @@ def display_post():
 
 @app.route("/post", methods=["POST"])
 def user_post():
-    data = {
-        "content" : request.form["user_post"],
-        "user_id" : session["id"]
-    }
-    post.Post.create(data)
+    if not post.Post.valid_post(request.form["user_post"]):
+        return redirect("/post")
+    else:
+        data = {
+            "content" : request.form["user_post"],
+            "user_id" : session["id"]
+        }
+        post.Post.create(data)   
     return redirect("/post")
 
 @app.route("/delete_post", methods=["POST"])

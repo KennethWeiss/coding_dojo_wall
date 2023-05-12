@@ -20,7 +20,7 @@ class Post:
     
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM posts;"
+        query = "SELECT * FROM posts ORDER BY posts.created_at desc;"
         results = connectToMySQL(cls.db).query_db(query)
         all_posts = []
         for post in results:
@@ -32,3 +32,11 @@ class Post:
         query = "DELETE FROM posts where id = %(post_id)s"
         results = connectToMySQL(cls.db).query_db(query, data)
         return results
+    
+    @staticmethod
+    def valid_post(post_content):
+        is_valid = True
+        if len(post_content) < 1:
+            is_valid = False
+            flash("Post cannot be empty", "post")
+        return is_valid

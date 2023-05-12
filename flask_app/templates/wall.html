@@ -8,7 +8,7 @@
     <title>Success</title>
 </head>
 <body>
-    {{session}}
+    <!-- {{session}} -->
     <nav class="navbar border-bottom border-dark p-3">
         <p class="navbar-brand">Coding Dojo Wall</p>
         <span>Welcome {{session["first_name"]}}</span>
@@ -22,6 +22,13 @@
             <p>
                 What's on your mind? Create a post:
             </p> 
+            {% with messages = get_flashed_messages(category_filter=["post"])%}
+            {% if messages %}
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}    
             <div class="form-group border-bottom pb-3">
                 <label for="user_post"></label> 
                 <textarea name="user_post" cols="50" rows="5" ></textarea>
