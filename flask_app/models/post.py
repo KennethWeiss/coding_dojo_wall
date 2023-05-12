@@ -26,3 +26,9 @@ class Post:
         for post in results:
             all_posts.append(cls(post))
         return all_posts
+    
+    @classmethod
+    def delete_post(cls,data):
+        query = "DELETE FROM posts where id = %(post_id)s"
+        results = connectToMySQL(cls.db).query_db(query, data)
+        return results

@@ -8,8 +8,6 @@ from flask_app.models import post
 def display_post():
     if session.get('logged_in') == True:
         all_posts = post.Post.get_all()
-        print("Here are the posts")
-        print(all_posts)
         return render_template("wall.html", all_posts = all_posts)
     return "You are not logged in"
 
@@ -20,4 +18,14 @@ def user_post():
         "user_id" : session["id"]
     }
     post.Post.create(data)
+    return redirect("/post")
+
+@app.route("/delete_post", methods=["POST"])
+def delete_post():
+    data = {
+        "post_id" : request.form["post_id"]
+    }
+    print("Here is the data")
+    print(data)
+    post.Post.delete_post(data)
     return redirect("/post")
