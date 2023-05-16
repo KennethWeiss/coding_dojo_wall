@@ -1,59 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <title>Success</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2299.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 12.0px 12.0px 0.0px; font: 15.0px 'Helvetica Neue'; color: #191c1f; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #191c1f; -webkit-text-stroke: #191c1f}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+    p.p4 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #191c1f; -webkit-text-stroke: #191c1f}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #191c1f; -webkit-text-stroke: #191c1f; min-height: 15.0px}
+    li.li2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #191c1f; -webkit-text-stroke: #191c1f}
+    span.s1 {font-kerning: none}
+    span.s2 {font-kerning: none; background-color: #b3b3b3}
+    span.s3 {-webkit-text-stroke: 0px #000000}
+    span.s4 {font-kerning: none; color: rgba(0, 0, 0, 0.85); background-color: #b3b3b3; -webkit-text-stroke: 0px rgba(0, 0, 0, 0.85)}
+    ul.ul1 {list-style-type: disc}
+  </style>
 </head>
 <body>
-    <!-- {{session}} -->
-    <nav class="navbar border-bottom border-dark p-3">
-        <p class="navbar-brand">Coding Dojo Wall</p>
-        <span>Welcome {{session["first_name"]}}</span>
-        <form action="/logout" method="POST" class="form-inline">
-            <button>Log out</button>
-        </form>
-    </nav>
-
-    <form action="/post" method="POST">
-        <div class="form-group p-5">
-            <p>
-                What's on your mind? Create a post:
-            </p> 
-            {% with messages = get_flashed_messages(category_filter=["post"])%}
-            {% if messages %}
-            {% for message in messages %}
-            <p>{{message}}</p>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}    
-            <div class="form-group border-bottom pb-3">
-                <label for="user_post"></label> 
-                <textarea name="user_post" cols="50" rows="5" ></textarea>
-            </br>
-                <button class="btn btn-primary">Publish</button>
-            </div>
-        </div>
-    </form>
-
-    <div class="community_posts">
-        <h3>All Community Posts</h3>
-    </div>
-    <ul>
-        {% for each_post in all_posts %}
-
-        <li>{{each_post.content}}</li>
-        <li>User id: {{each_post.user_id}} - {{each_post.created_at.strftime('%B %d')}}</li>
-        <li>Session: {{session['id']}}</li>
-        {% if each_post.user_id == session['id'] %}
-        <form action="/delete_post" method="POST">
-            <input type="hidden" name="post_id" value="{{each_post.id}}">
-            <button>Delete</button>
-        </form>
-        {% endif %}
-        {% endfor %}
-    </ul>
+<p class="p1"><span class="s1">Coding Dojo Wall</span></p>
+<p class="p2"><span class="s1">Welcome {{session["first_name"]}}</span></p>
+<p class="p3"><span class="s2">Log out</span></p>
+<p class="p4"><span class="s1">What's on your mind? Create a post:</span></p>
+<p class="p2"><span class="s1">{% with messages = get_flashed_messages(category_filter=["post"])%} {% if messages %} {% for message in messages %}</span></p>
+<p class="p4"><span class="s1">{{message}}</span></p>
+<p class="p2"><span class="s1">{% endfor %} {% endif %} {% endwith %}</span></p>
+<p class="p5"><span class="s1"></span><br></p>
+<h3 style="margin: 0.0px 0.0px 6.0px 0.0px; font: 20.4px '.SF NS'; color: #191c1f; -webkit-text-stroke: #191c1f"><span class="s1">All Community Posts</span></h3>
+<ul class="ul1">
+  <li class="li2"><span class="s3"></span><span class="s1">{% for each_post in all_posts %}</span></li>
+  <li class="li2"><span class="s3"></span><span class="s1">{{each_post.content}}</span></li>
+  <li class="li2"><span class="s3"></span><span class="s1">User id: {{each_post.user_id}} - {{each_post.created_at.strftime('%B %d')}}</span></li>
+  <li class="li2"><span class="s3"></span><span class="s1">Session: {{session['id']}}</span></li>
+  <li class="li2"><span class="s3"></span><span class="s1">{% if each_post.user_id == session['id'] %} </span><span class="s4">Delete</span><span class="s1"> <br>
+{% endif %} {% endfor %}</span></li>
+</ul>
 </body>
 </html>
